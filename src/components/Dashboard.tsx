@@ -22,7 +22,6 @@ export function Dashboard() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
   const [showProfile, setShowProfile] = useState(false);
-  const [isQuizActive, setIsQuizActive] = useState(false);
   const [userAvatar, setUserAvatar] = useState<string | null>(null);
   const inactivityTimerRef = useRef<NodeJS.Timeout | null>(null);
   const lastActivityRef = useRef<number>(Date.now());
@@ -129,7 +128,7 @@ export function Dashboard() {
         <div className="header-logo-section">
           <div className="header-logo">
             <img 
-              src={`${process.env.PUBLIC_URL || ''}/images/logo.png`}
+              src="/images/logo.png"
               alt="CRB Quiz Logo" 
               className="header-logo-image"
               onError={(e) => {
@@ -185,7 +184,7 @@ export function Dashboard() {
           user.role === 'admin' ? (
             <AdminDashboard />
           ) : (
-            <AlunoDashboard onQuizStateChange={setIsQuizActive} />
+            <AlunoDashboard />
           )
         )}
       </main>

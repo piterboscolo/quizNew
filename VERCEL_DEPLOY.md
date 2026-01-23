@@ -39,9 +39,9 @@ git push -u origin main
 1. No dashboard da Vercel, clique em **"Add New Project"**
 2. Selecione o repositório `newQuiz-main`
 3. A Vercel detectará automaticamente:
-   - Framework: Create React App
+   - Framework: Vite
    - Build Command: `npm run build`
-   - Output Directory: `build`
+   - Output Directory: `dist`
 
 ### 4. Configurar Variáveis de Ambiente
 
@@ -51,15 +51,17 @@ Na tela de configuração do projeto, role até **"Environment Variables"** e ad
 
 | Nome | Valor | Ambiente |
 |------|-------|----------|
-| `REACT_APP_SUPABASE_URL` | `https://seu-projeto.supabase.co` | Production, Preview, Development |
-| `REACT_APP_SUPABASE_ANON_KEY` | `sua-anon-key-aqui` | Production, Preview, Development |
+| `VITE_SUPABASE_URL` | `https://seu-projeto.supabase.co` | Production, Preview, Development |
+| `VITE_SUPABASE_ANON_KEY` | `sua-anon-key-aqui` | Production, Preview, Development |
+
+⚠️ **IMPORTANTE:** No Vite, as variáveis devem começar com `VITE_` (não `REACT_APP_`)
 
 **Onde encontrar as credenciais:**
 1. Acesse seu projeto no Supabase: https://supabase.com/dashboard
 2. Vá em **Settings → API**
 3. Copie:
-   - **Project URL** → `REACT_APP_SUPABASE_URL`
-   - **anon public** key → `REACT_APP_SUPABASE_ANON_KEY`
+   - **Project URL** → `VITE_SUPABASE_URL`
+   - **anon public** key → `VITE_SUPABASE_ANON_KEY`
 
 ⚠️ **NUNCA use a SERVICE_ROLE KEY no frontend!**
 
@@ -134,8 +136,9 @@ Você pode ter valores diferentes para Production, Preview e Development:
 
 **Solução:**
 1. Vá em **Settings → Environment Variables**
-2. Verifique se `REACT_APP_SUPABASE_URL` e `REACT_APP_SUPABASE_ANON_KEY` estão configuradas
+2. Verifique se `VITE_SUPABASE_URL` e `VITE_SUPABASE_ANON_KEY` estão configuradas
 3. Certifique-se de que estão marcadas para "Production"
+4. ⚠️ **IMPORTANTE:** No Vite, use `VITE_` ao invés de `REACT_APP_`
 
 ### Erro: "Cannot GET /dashboard"
 

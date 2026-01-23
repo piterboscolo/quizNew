@@ -1,12 +1,5 @@
 import { supabase } from '../lib/supabase';
-import { Database } from '../types/supabase';
-import { QuizStatistics, UserQuizStats, UserRanking } from '../types';
-
-type QuizStatsRow = Database['public']['Tables']['quiz_statistics']['Row'];
-type UserQuizStatsRow = Database['public']['Tables']['user_quiz_stats']['Row'];
-type UserSessionRow = Database['public']['Tables']['user_sessions']['Row'];
-type UserRow = Database['public']['Tables']['users']['Row'];
-type UserProfileRow = Database['public']['Tables']['user_profiles']['Row'];
+import { QuizStatistics, UserRanking, UserQuizStats } from '../types';
 
 /**
  * Busca todas as estatísticas de quiz

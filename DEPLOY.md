@@ -213,16 +213,18 @@ docker run -d -p 80:80 --env-file .env crb-quiz
 1. Acesse as configurações do projeto
 2. Vá em "Environment Variables"
 3. Adicione:
-   - `REACT_APP_SUPABASE_URL`
-   - `REACT_APP_SUPABASE_ANON_KEY`
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
+
+⚠️ **IMPORTANTE:** No Vite, as variáveis devem começar com `VITE_` (não `REACT_APP_`)
 
 ### Para Build Local:
 
-Crie um arquivo `.env.production`:
+Crie um arquivo `.env`:
 
 ```env
-REACT_APP_SUPABASE_URL=https://seu-projeto.supabase.co
-REACT_APP_SUPABASE_ANON_KEY=sua-anon-key-aqui
+VITE_SUPABASE_URL=https://seu-projeto.supabase.co
+VITE_SUPABASE_ANON_KEY=sua-anon-key-aqui
 ```
 
 ---

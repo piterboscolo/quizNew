@@ -19,13 +19,11 @@ const QuizContext = createContext<QuizContextType | undefined>(undefined);
 export function QuizProvider({ children }: { children: ReactNode }) {
   const [subjects, setSubjects] = useState<Subject[]>([]);
   const [questions, setQuestions] = useState<Question[]>([]);
-  const [loading, setLoading] = useState(true);
 
   // Carregar subjects e questions do Supabase
   useEffect(() => {
     const loadData = async () => {
       try {
-        setLoading(true);
         console.log('📥 Carregando subjects e questions do Supabase...');
 
         // Carregar subjects
@@ -75,8 +73,6 @@ export function QuizProvider({ children }: { children: ReactNode }) {
         // Fallback para dados padrão
         setSubjects(defaultSubjects);
         setQuestions(defaultQuestions);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -87,7 +83,7 @@ export function QuizProvider({ children }: { children: ReactNode }) {
     try {
       console.log('➕ Adicionando subject:', subject);
       
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('subjects')
         .insert({
           id: subject.id,
@@ -115,7 +111,7 @@ export function QuizProvider({ children }: { children: ReactNode }) {
     try {
       console.log('➕ Adicionando question:', question.id);
       
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('questions')
         .insert({
           id: question.id,

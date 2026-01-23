@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useQuiz } from '../context/QuizContext';
 import { useAuth } from '../context/AuthContext';
-import { Subject, Question, QuizResult, UserQuizStats } from '../types';
+import { Subject, Question, QuizResult } from '../types';
 import { Quiz } from './Quiz';
 import { getSubjectConfig } from '../utils/subjectConfig';
 import { saveQuizStatistics, saveUserQuizStats } from '../services/quizService';

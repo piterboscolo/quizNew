@@ -24,7 +24,7 @@ export function Profile({ onBack }: ProfileProps) {
   const [uploadedImage, setUploadedImage] = useState<string>('');
   const [activeTab, setActiveTab] = useState<'preset' | 'upload'>('preset');
   const [hasChanges, setHasChanges] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   // Estados temporários para mudanças não salvas
@@ -135,20 +135,6 @@ export function Profile({ onBack }: ProfileProps) {
     if (fileInputRef.current) {
       fileInputRef.current.value = '';
     }
-  };
-
-  // Removido: saveProfile agora usa saveUserProfile do serviço
-
-  const getCurrentAvatar = () => {
-    const currentImage = tempUploadedImage || uploadedImage;
-    const currentAvatar = tempSelectedAvatar || selectedAvatar;
-    
-    if (currentImage) return currentImage;
-    if (currentAvatar) {
-      const avatar = PRESET_AVATARS.find(a => a.id === currentAvatar);
-      return avatar ? avatar.emoji : '';
-    }
-    return '';
   };
 
   return (

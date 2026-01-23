@@ -27,7 +27,6 @@ export function Quiz({ subject, questions, onComplete, onBack, onRestart, quizKe
   const questionCardRef = useRef<HTMLDivElement>(null);
   // Rastrear todas as tentativas de resposta (acertos e erros) usando useRef para garantir que sempre temos o valor atualizado
   const totalAttemptsRef = useRef({ correct: 0, wrong: 0 });
-  const [totalAttempts, setTotalAttempts] = useState({ correct: 0, wrong: 0 });
   // Rastrear quais questões já foram respondidas em tentativas anteriores (para não contar novamente)
   const [previouslyAnsweredQuestions, setPreviouslyAnsweredQuestions] = useState<Set<string>>(new Set());
 
@@ -40,7 +39,6 @@ export function Quiz({ subject, questions, onComplete, onBack, onRestart, quizKe
     setIsComplete(false);
     setShowAnswer(false);
     totalAttemptsRef.current = { correct: 0, wrong: 0 };
-    setTotalAttempts({ correct: 0, wrong: 0 });
     
     // Carregar questões já respondidas anteriormente do Supabase
     const loadAnsweredQuestions = async () => {
@@ -118,8 +116,6 @@ export function Quiz({ subject, questions, onComplete, onBack, onRestart, quizKe
       } else {
         totalAttemptsRef.current.wrong += 1;
       }
-      // Atualizar também o estado para exibição
-      setTotalAttempts({ ...totalAttemptsRef.current });
     }
     
     // Marcar a questão como respondida nesta tentativa (acertada ou errada)

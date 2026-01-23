@@ -12,8 +12,8 @@ A aplicação já está configurada para deploy na Vercel. Basta:
 
 1. Conectar seu repositório Git à Vercel
 2. Configurar as variáveis de ambiente:
-   - `REACT_APP_SUPABASE_URL`
-   - `REACT_APP_SUPABASE_ANON_KEY`
+   - `VITE_SUPABASE_URL`
+   - `VITE_SUPABASE_ANON_KEY`
 3. Fazer o deploy!
 
 Veja o guia completo em [DEPLOY.md](./DEPLOY.md)
@@ -86,7 +86,7 @@ npm start
   - React 18
   - TypeScript
   - React Router DOM
-  - Create React App
+  - Vite (Build Tool)
 
 - **Backend:**
   - Supabase (PostgreSQL)
@@ -118,20 +118,22 @@ src/
 
 ## 📚 Scripts Disponíveis
 
-- `npm start` - Inicia o servidor de desenvolvimento
+- `npm run dev` ou `npm start` - Inicia o servidor de desenvolvimento (Vite)
 - `npm run build` - Cria build de produção
-- `npm test` - Executa os testes
+- `npm run preview` - Preview do build de produção
 
 ## 🔐 Variáveis de Ambiente
 
 Crie um arquivo `.env` na raiz do projeto:
 
 ```env
-REACT_APP_SUPABASE_URL=https://seu-projeto.supabase.co
-REACT_APP_SUPABASE_ANON_KEY=sua-anon-key-aqui
+VITE_SUPABASE_URL=https://seu-projeto.supabase.co
+VITE_SUPABASE_ANON_KEY=sua-anon-key-aqui
 ```
 
-⚠️ **IMPORTANTE:** Use sempre a ANON KEY (chave pública), nunca a SERVICE_ROLE KEY no frontend!
+⚠️ **IMPORTANTE:** 
+- Use sempre a ANON KEY (chave pública), nunca a SERVICE_ROLE KEY no frontend!
+- No Vite, as variáveis de ambiente devem começar com `VITE_` (não `REACT_APP_`)
 
 ## 📖 Documentação Adicional
 

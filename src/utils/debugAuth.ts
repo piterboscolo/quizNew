@@ -9,11 +9,11 @@ export const debugAuth = {
   // Verificar conexão com Supabase
   async checkConnection() {
     console.log('🔍 Verificando conexão com Supabase...');
-    console.log('URL:', process.env.REACT_APP_SUPABASE_URL);
-    console.log('Key configurada:', !!process.env.REACT_APP_SUPABASE_ANON_KEY);
+    console.log('URL:', import.meta.env.VITE_SUPABASE_URL);
+    console.log('Key configurada:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
     
     try {
-      const { data, error } = await supabase
+      const { error } = await supabase
         .from('users')
         .select('count')
         .limit(1);
@@ -185,7 +185,7 @@ export const debugAuth = {
     
     try {
       // Tentar ler usuários
-      const { data: readData, error: readError } = await supabase
+      const { error: readError } = await supabase
         .from('users')
         .select('*')
         .limit(1);

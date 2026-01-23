@@ -88,7 +88,7 @@ export function Login() {
         <div className="login-header">
           <div className="login-logo">
             <img 
-              src={`${process.env.PUBLIC_URL || ''}/images/logo.png`}
+              src="/images/logo.png"
               alt="CRB Quiz Logo" 
               className="logo-image"
               onError={(e) => {

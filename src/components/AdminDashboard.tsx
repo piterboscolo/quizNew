@@ -70,7 +70,7 @@ export default function AdminDashboard() {
   
 
   // Função auxiliar para obter avatar
-  const getUserAvatar = (userId: string, avatar: string | null | undefined) => {
+  const getUserAvatar = (_userId: string, avatar: string | null | undefined) => {
     if (avatar) {
       // Se for uma imagem (data:image, http/https, blob:), retornar como imagem
       if (avatar.startsWith('data:image') || 
