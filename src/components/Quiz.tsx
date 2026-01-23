@@ -58,7 +58,8 @@ export function Quiz({ subject, questions, onComplete, onBack, onRestart, quizKe
     };
     
     loadAnsweredQuestions();
-  }, [quizKey, questions, subject.id]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quizKey, questions, subject.id, user]);
 
   const currentQuestion = questions[currentQuestionIndex];
   const totalQuestions = questions.length;

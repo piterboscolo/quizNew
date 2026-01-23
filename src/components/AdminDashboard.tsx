@@ -2,10 +2,9 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useQuiz } from '../context/QuizContext';
 import { useAuth } from '../context/AuthContext';
-import { QuizStatistics, UserRanking, UserQuizStats, User, Subject, Question } from '../types';
+import { QuizStatistics, UserRanking, Subject } from '../types';
 import { 
   getAllQuizStatistics, 
-  getAllUserQuizStats, 
   getAllUsersWithDetails, 
   getUserRankings,
   getActiveSessions,
@@ -121,6 +120,7 @@ export default function AdminDashboard() {
       }
     };
     loadData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeTab, currentUser]);
 
   // Carregar estatísticas do Supabase
