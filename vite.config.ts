@@ -11,6 +11,13 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
+    // Garantir que os assets sejam referenciados corretamente
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
   // Configuração para variáveis de ambiente
   envPrefix: 'VITE_',

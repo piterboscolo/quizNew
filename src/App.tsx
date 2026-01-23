@@ -5,6 +5,7 @@ import { Login } from './components/Login';
 import { Dashboard } from './components/Dashboard';
 import { DatabaseTest } from './components/DatabaseTest';
 import { MigrateQuestions } from './components/MigrateQuestions';
+import { ErrorBoundary } from './components/ErrorBoundary';
 import './App.css';
 // Importar debug auth (disponibiliza no console)
 import './utils/debugAuth';
@@ -55,13 +56,15 @@ function AppRoutes() {
 
 function App() {
   return (
-    <AuthProvider>
-      <QuizProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </QuizProvider>
-    </AuthProvider>
+    <ErrorBoundary>
+      <AuthProvider>
+        <QuizProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </QuizProvider>
+      </AuthProvider>
+    </ErrorBoundary>
   );
 }
 

@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import { ConnectionDiagnostic } from './ConnectionDiagnostic';
+import { quickConnectionTest } from '../utils/connectionTest';
 import './Login.css';
 
 export function Login() {
@@ -12,8 +14,22 @@ export function Login() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
+  const [showDiagnostic, setShowDiagnostic] = useState(false);
+  const [connectionError, setConnectionError] = useState<string | null>(null);
   const { login, register } = useAuth();
   const navigate = useNavigate();
+
+  // Verificar conexão ao carregar
+  useEffect(() => {
+    const checkConnection = async () => {
+      const result = await quickConnectionTest();
+      if (!result.connected) {
+        setConnectionError(result.error || 'Erro desconhecido');
+        setShowDiagnostic(true);
+      }
+    };
+    checkConnection();
+  }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -257,6 +273,32 @@ export function Login() {
             </button>
           </p>
         </div>
+
+        {connectionError && (
+          <div style={{ marginTop: '1rem' }}>
+            <button
+              type="button"
+              onClick={() => setShowDiagnostic(!showDiagnostic)}
+              style={{
+                width: '100%',
+                padding: '0.75rem',
+                background: '#fee2e2',
+                color: '#991b1b',
+                border: '1px solid #fca5a5',
+                borderRadius: '6px',
+                cursor: 'pointer',
+                fontWeight: 500,
+              }}
+            >
+              {showDiagnostic ? '▼' : '▶'} Problemas de Conexão Detectados - Clique para ver diagnóstico
+            </button>
+            {showDiagnostic && (
+              <div style={{ marginTop: '1rem' }}>
+                <ConnectionDiagnostic />
+              </div>
+            )}
+          </div>
+        )}
       </div>
     </div>
   );
